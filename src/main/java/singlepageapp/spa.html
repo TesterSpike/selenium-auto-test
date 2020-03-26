@@ -1,0 +1,93 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <link href="spa.css" rel="stylesheet" type="text/css">
+    <script src="spa.js"></script>
+    <meta charset="UTF-8">
+    <title>Single Page App demo</title>
+</head>
+<body onload="onLoadScript()">
+<h2>Single Page App demo</h2>
+<div>
+    A simple app to allow for example Selenium web driver tests to created and tested. <br>
+    <p><label for="delayTimeSelect">Delay message by </label><select id="delayTimeSelect" onchange="updateDelayTime()">
+        <option selected>0</option>
+        <option>1</option>
+        <option>3</option>
+        <option>5</option>
+        <option>10</option>
+        <option>Random</option>
+    </select> seconds.
+    </p>
+    <br>
+    <hr>
+</div>
+<div><h3>Notes</h3>
+    <div class="">
+        <label class="radio" for="simpleFormRadio"> Simple:</label>
+        <input class="radio" id="simpleFormRadio" name="formType" type="radio" value="simple"
+               onclick="showHideComplex()" checked>
+        <label class="radio" for="complexFormRadio"> Advanced:</label>
+        <input class="radio" id="complexFormRadio" name="formType" type="radio" value="advanced"
+               onclick="showHideComplex()">
+    </div>
+</div>
+<div class="flexContainerRow">
+    <form class="flexContainerColumn flexStart" id="noteForm">
+        <div class="flexContainerRow flexField formField flexCenter">
+            <label class="flexStart flexField formTypeAll" for="priority"> title:</label>
+            <span class="flexField errorMessage" id="priorityError" hidden></span>
+            <input id="priority" class="flexEnd flexXL formTypeAll" list="demoList" placeholder="enter title">
+            <datalist id="demoList" class="formTypeAll">
+                <option>Urgent</option>
+                <option>Info</option>
+                <option>To Do</option>
+            </datalist>
+        </div>
+        <div class="flexContainerRow flexField formField">
+            <label class="flexStart formTypeAll" for="name"> name:</label>
+            <span class="flexField errorMessage" id="nameError" hidden></span>
+            <input id="name" class="flexEnd flexXL formTypeAll">
+        </div>
+        <div class="flexContainerRow flexField formField">
+            <label class="flexStart formTypeSimple" for="singleCategory"> Category: </label>
+            <span class="flexField errorMessage" id="singleCategoryError" hidden></span>
+            <select id="singleCategory" class="flexEnd flexXL formTypeSimple" name="single select" size="1">
+                <option>a</option>
+                <option>b</option>
+            </select>
+        </div>
+        <div class="flexContainerRow flexField formField">
+            <label class="flexStart formTypeAdvanced" for="multiCategory"> Categories: </label>
+            <span class="flexField errorMessage" id="multiCategoryError" hidden></span>
+            <select id="multiCategory" class="flexEnd flexXL formTypeAdvanced" name="single select" multiple size="2">
+                <option>a</option>
+                <option>b</option>
+            </select>
+        </div>
+        <div class="flexContainerRow flexField formField">
+            <label class="flexStart formTypeAdvanced" for="noteText">text area</label>
+            <span class="flexField errorMessage" id="noteTextError" hidden></span>
+            <textarea id="noteText" class="flexEnd flexXL formTypeAdvanced"></textarea>
+        </div>
+        <div class="flexContainerRow flexField">
+        <span class="flexStart formTypeAll">
+            <button type="button" onclick="submitNote()">Submit</button>
+        </span>
+            <span class="flexEnd formTypeAll">
+            <button type="button" onclick="resubmitNote()">Resubmit last</button>
+        </span>
+        </div>
+    </form>
+    <div class="flexContainerColumn flexStart flexStretch" id="lastNoteOutput">
+        <h4>Last Note</h4>
+        <!-- output row will go here-->
+    </div>
+</div>
+<hr>
+<div class="messages">
+    <ul id="messages"></ul>
+    <!-- list of messages will go here -->
+</div>
+</body>
+</html>

@@ -1,0 +1,49 @@
+span.info {
+    color: darkblue;
+    letter-spacing: 2px;
+}
+
+span.errorMessage {
+    border: 1px solid crimson;
+    color: crimson;
+}
+
+/*Start of flex styling*/
+.flexContainerColumn {
+    display: flex;
+    flex-direction: column;
+    border: 1px solid green;
+}
+
+.flexContainerRow {
+    display: flex;
+    flex-direction: row;
+}
+
+.flexField {
+    line-height: 40px;
+}
+
+.flexStart {
+    flex: 1;
+    align-self: flex-start;
+}
+
+.flexStretch {
+    align-self: stretch;
+}
+
+.flexCenter {
+    align-items: center;
+}
+
+.flexEnd {
+    flex: 1;
+    align-self: flex-end;
+}
+
+.flexXL {
+    flex: 2;
+}
+
+/*End of flex styling*/
