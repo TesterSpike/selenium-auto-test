@@ -13,6 +13,7 @@ repositories {
 
 test {
     useJUnitPlatform()
+    systemProperty "env", findProperty("env") ?: "test"
 }
 
 ext {

@@ -14,7 +14,7 @@ public class SystemVariable {
 
 
     public SystemVariable() {
-        properties = getTestPropertiesFile("test");
+        properties = getPropertiesFile(System.getProperty("env"));
         Path url = Paths.get(getPropertyByName("baseUrl", "defaultValue").replace("\"", ""));
         baseUrl = url.toUri().toString();
         System.out.println(baseUrl);
@@ -25,10 +25,14 @@ public class SystemVariable {
         return (properties.getProperty(propertyName) == null) ? defaultValue : properties.getProperty(propertyName);
     }
 
-    private Properties getTestPropertiesFile(String env) {
-        //If you have multiple environments you can use an environment variable on the command line to specify which one to use
-        //String env = System.getProperty("Environment");
-
+    /**
+     * Returns a properties object from the file with the supplied name.  The name is appended with '.properties'
+     *
+     * @param env file name
+     * @return Properties object
+     */
+    @SuppressWarnings("SameParameterValue")
+    private Properties getPropertiesFile(String env) {
         Properties properties = new Properties();
         try (InputStream input = new FileInputStream("./src/test/resources/" + env + ".properties")) {
             properties.load(input);
