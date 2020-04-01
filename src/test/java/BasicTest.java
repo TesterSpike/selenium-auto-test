@@ -5,11 +5,11 @@ import org.junit.jupiter.api.Test;
 import org.openqa.selenium.WebDriver;
 import org.openqa.selenium.chrome.ChromeDriver;
 
-public class BasicTest {
-    private SystemVariable systemVariable = new SystemVariable();
+class BasicTest {
+    private final SystemVariable systemVariable = new SystemVariable();
 
     @Test
-    public void simpleTest() {
+    void simpleTest() {
         WebDriverManager.chromedriver().setup(); //gets matching version of the chrome driver for the test system
         WebDriver driver = new ChromeDriver();
         driver.get(systemVariable.baseUrl);

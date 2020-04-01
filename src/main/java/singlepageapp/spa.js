@@ -5,6 +5,8 @@ const simpleElementSelector = ".formTypeSimple";
 const disabledAttribute = "hidden";
 let isAdvanced = false;
 let delayTime;
+const maxRandomDelaySeconds = 30;
+const millisecondsToSeconds = 1000;
 
 //TODO maybe add field level error messages
 
@@ -32,7 +34,7 @@ function hideFields() {
 function updateDelayTime() {
     let value = document.getElementById("delayTimeSelect").value;
     if (value === "Random") {
-        value = (Math.floor(Math.random() * 30));
+        value = (Math.floor(Math.random() * maxRandomDelaySeconds));
     }
     console.log("delay is " + value);
     delayTime = value;
@@ -76,21 +78,22 @@ function readNote() {
 }
 
 function outputNote() {
+    let key, divHtml, spanKey, spanValue;
     //Clear existing note
     let output = document.getElementById("lastNoteOutput");
     removeChildrenBySelector(output, "div");
 
     //Output note details
     lastNote["Timestamp:"] = timestamp();
-    for (let key in lastNote) {
+    for (key in lastNote) {
         if (lastNote[key] !== "") {
-            let divHtml = document.createElement("DIV");
+            divHtml = document.createElement("DIV");
             divHtml.setAttribute("class", "flexContainerRow");
-            let spanKey = document.createElement("SPAN");
+            spanKey = document.createElement("SPAN");
             spanKey.setAttribute("class", "flexStart");
             spanKey.innerText = key;
             divHtml.appendChild(spanKey);
-            let spanValue = document.createElement("SPAN");
+            spanValue = document.createElement("SPAN");
             spanValue.setAttribute("class", "flexEnd");
             spanValue.innerText = lastNote[key];
             divHtml.appendChild(spanValue);
@@ -104,11 +107,11 @@ function addMessage(reason) {
     let message = document.createElement("LI");
     message.class = "message";
     message.style.opacity = "0";
-    message.innerHTML = timestamp() + " - " + reason;
+    message.innerText = timestamp() + " - " + reason;
     messagesList.appendChild(message);
     setTimeout(function () {
         message.style.opacity = "1";
-    }, delayTime * 1000);
+    }, delayTime * millisecondsToSeconds);
 }
 
 function timestamp() {
@@ -119,6 +122,9 @@ function timestamp() {
 
 
 function removeChildrenBySelector(output, childSelector) {
+    let i;
     let children = output.querySelectorAll(childSelector);
-    for (let i = 0; i < children.length; i++) output.removeChild(children[i]);
+    for (i = 0; i < children.length; i++) {
+        output.removeChild(children[i]);
+    }
 }

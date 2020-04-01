@@ -17,7 +17,6 @@ public class SystemVariable {
         properties = getPropertiesFile(System.getProperty("env"));
         Path url = Paths.get(getPropertyByName("baseUrl", "defaultValue").replace("\"", ""));
         baseUrl = url.toUri().toString();
-        System.out.println(baseUrl);
         defaultPriority = getPropertyByName("defaultPriority", "Urgent");
     }
 
@@ -33,13 +32,13 @@ public class SystemVariable {
      */
     @SuppressWarnings("SameParameterValue")
     private Properties getPropertiesFile(String env) {
-        Properties properties = new Properties();
+        Properties props = new Properties();
         try (InputStream input = new FileInputStream("./src/test/resources/" + env + ".properties")) {
-            properties.load(input);
+            props.load(input);
         } catch (IOException ex) {
             ex.printStackTrace();
         }
-        return properties;
+        return props;
     }
 }
 
