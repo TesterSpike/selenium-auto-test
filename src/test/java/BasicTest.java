@@ -1,19 +1,23 @@
 import automation.SystemVariable;
 import io.github.bonigarcia.wdm.WebDriverManager;
-import org.junit.jupiter.api.Assertions;
-import org.junit.jupiter.api.Test;
+import org.junit.jupiter.api.AfterEach;
+import org.junit.jupiter.api.BeforeEach;
 import org.openqa.selenium.WebDriver;
 import org.openqa.selenium.chrome.ChromeDriver;
 
 class BasicTest {
     private final SystemVariable systemVariable = new SystemVariable();
+    WebDriver driver;
 
-    @Test
-    void simpleTest() {
+    @BeforeEach
+    void setup() {
         WebDriverManager.chromedriver().setup(); //gets matching version of the chrome driver for the test system
-        WebDriver driver = new ChromeDriver();
+        driver = new ChromeDriver();
         driver.get(systemVariable.baseUrl);
-        Assertions.assertEquals("Single Page App demo", driver.getTitle(), "Simple test");
+    }
+
+    @AfterEach
+    void tearDown() {
         driver.quit();
     }
 }
