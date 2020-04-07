@@ -66,7 +66,7 @@ public class AddNoteStep {
         } else {
             Assertions.assertEquals(noteModel.getPriority(), output.getPriority(), "Output 'Priority' field");
             Assertions.assertEquals(noteModel.getName(), output.getName(), "Output 'Name' field");
-            //Assertions.assertEquals(noteModel.getCategoriesString(), output.getCategories(), "Output 'Categories' field"); //FIXME - Bug 2 - Categories not space separated
+            Assertions.assertEquals(noteModel.getCategoriesString(), output.getCategories(), "Output 'Categories' field"); //FIXED - Bug 2 - Categories not space separated
             Assertions.assertEquals(noteModel.getDescription(), output.getNoteText(), "Output 'Note text' field"); //FIXED - Bug 1 - text not added to output note
             Assertions.assertEquals(expectedDate, output.getTimeStamp(), "Output 'Timestamp' field");
         }

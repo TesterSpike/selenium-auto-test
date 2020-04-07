@@ -36,7 +36,6 @@ function updateDelayTime() {
     if (value === "Random") {
         value = (Math.floor(Math.random() * maxRandomDelaySeconds));
     }
-    console.log("delay is " + value);
     delayTime = value;
 }
 
@@ -70,7 +69,9 @@ function readNote() {
     lastNote["Priority:"] = document.getElementById("priority").value;
     lastNote["Name:"] = document.getElementById("name").value;
     if (isAdvanced) {
-        lastNote["Categories:"] = Array.from(document.getElementById("multiCategory").selectedOptions).map(option => option.innerText);
+        lastNote["Categories:"] = Array.from(document.getElementById("multiCategory").selectedOptions)
+            .map(option => option.innerText)
+            .toString().replace(",", ", "); //Fix bug 2 where array had no space between commas
         lastNote["Text:"] = document.getElementById("noteText").value;
     } else {
         lastNote["Category:"] = document.getElementById("singleCategory").value;
