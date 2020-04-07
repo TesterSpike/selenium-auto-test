@@ -10,20 +10,22 @@
 <h2>Single Page App demo</h2>
 <div>
     A simple app to allow for example Selenium web driver tests to created and tested. <br>
-    <p><label for="delayTimeSelect">Delay message by </label><select id="delayTimeSelect" onchange="updateDelayTime()">
+    <p><label for="delayTimeSelect">Delay message by </label>
+        <select id="delayTimeSelect" onchange="updateDelayTime()">
         <option selected>0</option>
-        <option>1</option>
-        <option>3</option>
-        <option>5</option>
-        <option>10</option>
-        <option>Random</option>
+        <option value="1">1</option>
+        <option value="3">3</option>
+        <option value="5">5</option>
+        <option value="10">10</option>
+        <option value="Random">Random</option>
     </select> seconds.
     </p>
     <br>
     <hr>
 </div>
 <div><h3>Notes</h3>
-    <div class="">
+    <div class="radioSet">
+        <span class="radioHeader">Note Type</span><br>
         <label class="radio" for="simpleFormRadio"> Simple:</label>
         <input class="radio" id="simpleFormRadio" name="formType" type="radio" value="simple"
                onclick="showHideComplex()" checked>
@@ -35,9 +37,9 @@
 <div class="flexContainerRow">
     <form class="flexContainerColumn flexStart" id="noteForm">
         <div class="flexContainerRow flexField formField flexCenter">
-            <label class="flexStart flexField formTypeAll" for="priority"> title:</label>
+            <label class="flexStart flexField formTypeAll" for="priority"> Priority:</label>
             <span class="flexField errorMessage" id="priorityError" hidden></span>
-            <input id="priority" class="flexEnd flexXL formTypeAll" list="demoList" placeholder="enter title">
+            <input id="priority" class="flexEnd flexXL formTypeAll" list="demoList" placeholder="enter priority">
             <datalist id="demoList" class="formTypeAll">
                 <option>Urgent</option>
                 <option>Info</option>
@@ -45,7 +47,7 @@
             </datalist>
         </div>
         <div class="flexContainerRow flexField formField">
-            <label class="flexStart formTypeAll" for="name"> name:</label>
+            <label class="flexStart formTypeAll" for="name"> Name:</label>
             <span class="flexField errorMessage" id="nameError" hidden></span>
             <input id="name" class="flexEnd flexXL formTypeAll">
         </div>
@@ -53,20 +55,24 @@
             <label class="flexStart formTypeSimple" for="singleCategory"> Category: </label>
             <span class="flexField errorMessage" id="singleCategoryError" hidden></span>
             <select id="singleCategory" class="flexEnd flexXL formTypeSimple" name="single select" size="1">
-                <option>a</option>
-                <option>b</option>
+                <option>Personal</option>
+                <option>Business</option>
             </select>
         </div>
         <div class="flexContainerRow flexField formField">
             <label class="flexStart formTypeAdvanced" for="multiCategory"> Categories: </label>
             <span class="flexField errorMessage" id="multiCategoryError" hidden></span>
             <select id="multiCategory" class="flexEnd flexXL formTypeAdvanced" name="single select" multiple size="2">
-                <option>a</option>
-                <option>b</option>
+                <option>Travel</option>
+                <option>Lunch</option>
+                <option>Client</option>
+                <option>Meeting</option>
+                <option>Work</option>
+                <option>Play</option>
             </select>
         </div>
         <div class="flexContainerRow flexField formField">
-            <label class="flexStart formTypeAdvanced" for="noteText">text area</label>
+            <label class="flexStart formTypeAdvanced" for="noteText">Description</label>
             <span class="flexField errorMessage" id="noteTextError" hidden></span>
             <textarea id="noteText" class="flexEnd flexXL formTypeAdvanced"></textarea>
         </div>

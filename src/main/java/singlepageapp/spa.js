@@ -71,7 +71,7 @@ function readNote() {
     lastNote["Name:"] = document.getElementById("name").value;
     if (isAdvanced) {
         lastNote["Categories:"] = Array.from(document.getElementById("multiCategory").selectedOptions).map(option => option.innerText);
-        lastNote["Text:"] = document.getElementById("noteText").innerText;
+        lastNote["Text:"] = document.getElementById("noteText").value;
     } else {
         lastNote["Category:"] = document.getElementById("singleCategory").value;
     }

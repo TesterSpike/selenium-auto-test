@@ -3,6 +3,16 @@ span.errorMessage {
     color: crimson;
 }
 
+.radioSet {
+    background: darksalmon;
+    max-width: max-content;
+    margin: auto;
+}
+
+.radioHeader {
+    font-weight: bold;
+}
+
 /*Start of flex styling*/
 .flexContainerColumn {
     display: flex;

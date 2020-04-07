@@ -20,13 +20,13 @@ class AddNoteTest extends BasicTest {
         SimpleNote note = new Type(driver).simpleNote();
         note.selectPriority("Urgent");
         note.enterName("test Note");
-        note.selectCategory("a");
+        note.selectCategory("Personal");
         note.submitNote();
         String expectedDate = new ExpectedDate().now();
         OutputNote output = new OutputNote(driver);
         Assertions.assertEquals("Urgent", output.getPriority(), "Output 'Priority' field");
         Assertions.assertEquals("test Note", output.getName(), "Output 'Name' field");
-        Assertions.assertEquals("a", output.getCategory(), "Output 'Category' field");
+        Assertions.assertEquals("Personal", output.getCategory(), "Output 'Category' field");
         Assertions.assertEquals(expectedDate, output.getTimeStamp(), "Output 'Timestamp' field");
     }
 
@@ -35,15 +35,15 @@ class AddNoteTest extends BasicTest {
         ComplexNote note = new Type(driver).advancedNote();
         note.selectPriority("Info");
         note.enterName("Glue");
-        note.selectCategories(Arrays.asList("a", "b"));
+        note.selectCategories(Arrays.asList("Client", "Meeting"));
         note.enterText("block text");
         note.submitNote();
         String expectedDate = new ExpectedDate().now();
         OutputNote output = new OutputNote(driver);
         Assertions.assertEquals("Info", output.getPriority(), "Output 'Priority' field");
         Assertions.assertEquals("Glue", output.getName(), "Output 'Name' field");
-        Assertions.assertEquals("a,b", output.getCategories(), "Output 'Categories' field");
-        //Assertions.assertEquals("block text", output.getNoteText(), "Output 'Note text' field"); //FIXME - Bug 1 - text not added to output note
+        Assertions.assertEquals("Client,Meeting", output.getCategories(), "Output 'Categories' field");
+        Assertions.assertEquals("block text", output.getNoteText(), "Output 'Note text' field"); //FIXED - Bug 1 - text not added to output note
         Assertions.assertEquals(expectedDate, output.getTimeStamp(), "Output 'Timestamp' field");
     }
 }
