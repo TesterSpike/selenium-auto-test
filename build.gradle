@@ -21,6 +21,24 @@ ext {
     seleniumVersion = '3.141.59'
     webdriverManagerVersion = '3.8.1'
     slf4jVersion = '1.7.30'
+    cucumberVersion = '5.6.0'
+}
+
+task cucumber() {
+    dependsOn assemble, compileTestJava, test
+    doLast {
+        javaexec {
+            main = "io.cucumber.core.cli.Main"
+            classpath = configurations.cucumberRuntime + sourceSets.main.output + sourceSets.test.output
+            args = ['--plugin', 'pretty', '--glue', 'gradle.cucumber', 'src/test/resources']
+        }
+    }
+}
+
+configurations {
+    cucumberRuntime {
+        extendsFrom testImplementation
+    }
 }
 
 dependencies {
@@ -37,4 +55,6 @@ dependencies {
     //Selenium
     implementation("org.seleniumhq.selenium:selenium-java:$seleniumVersion")
 
+    //Cucumber
+    testImplementation "io.cucumber:cucumber-java:$cucumberVersion"
 }
