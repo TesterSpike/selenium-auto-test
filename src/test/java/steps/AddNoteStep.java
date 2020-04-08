@@ -10,22 +10,12 @@ import automation.util.ExpectedDate;
 import io.cucumber.java.en.Given;
 import io.cucumber.java.en.Then;
 import io.cucumber.java.en.When;
-import io.github.bonigarcia.wdm.WebDriverManager;
 import org.junit.jupiter.api.Assertions;
-import org.openqa.selenium.WebDriver;
-import org.openqa.selenium.chrome.ChromeDriver;
 
 import java.util.Arrays;
 
-public class AddNoteStep {
-    private final WebDriver driver;
+public class AddNoteStep extends BaseStep {
     private final NoteModel noteModel = new NoteModel();
-
-    public AddNoteStep() {
-        WebDriverManager.chromedriver().setup(); //gets matching version of the chrome driver for the test system
-        driver = new ChromeDriver();
-
-    }
 
     @Given("I am a user adding a note")
     public void IAmAUserAddingANote() {
@@ -70,6 +60,5 @@ public class AddNoteStep {
             Assertions.assertEquals(noteModel.getDescription(), output.getNoteText(), "Output 'Note text' field"); //FIXED - Bug 1 - text not added to output note
             Assertions.assertEquals(expectedDate, output.getTimeStamp(), "Output 'Timestamp' field");
         }
-        driver.quit();
     }
 }

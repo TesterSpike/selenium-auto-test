@@ -71,3 +71,6 @@ gen
 *.zip
 *.tar.gz
 *.rar
+
+# Output Location #
+target/

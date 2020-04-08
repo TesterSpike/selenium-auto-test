@@ -30,7 +30,7 @@ task cucumber() {
         javaexec {
             main = "io.cucumber.core.cli.Main"
             classpath = configurations.cucumberRuntime + sourceSets.main.output + sourceSets.test.output
-            args = ['--plugin', 'pretty', '--glue', 'gradle.cucumber', 'src/test/resources']
+            args = ['--plugin', 'pretty', '--glue', 'gradle.cucumber', 'classpath:features']
         }
     }
 }
@@ -44,6 +44,7 @@ configurations {
 dependencies {
     testImplementation("org.junit.jupiter:junit-jupiter-api:$junitVersion")
     testImplementation("org.junit.jupiter:junit-jupiter-engine:$junitVersion")
+    testImplementation("org.junit.vintage:junit-vintage-engine:$junitVersion")
 
     // Downloads the correct webdriver binary for the browser and version
     implementation("io.github.bonigarcia:webdrivermanager:$webdriverManagerVersion")
@@ -57,4 +58,5 @@ dependencies {
 
     //Cucumber
     testImplementation "io.cucumber:cucumber-java:$cucumberVersion"
+    testImplementation "io.cucumber:cucumber-junit:$cucumberVersion"
 }
