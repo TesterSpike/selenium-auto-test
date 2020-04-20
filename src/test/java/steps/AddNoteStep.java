@@ -7,6 +7,7 @@ import automation.page.note.ComplexNote;
 import automation.page.note.SimpleNote;
 import automation.page.note.Type;
 import automation.util.ExpectedDate;
+import automation.util.Logger;
 import io.cucumber.java.en.Given;
 import io.cucumber.java.en.Then;
 import io.cucumber.java.en.When;
@@ -16,11 +17,13 @@ import java.util.Arrays;
 
 public class AddNoteStep extends BaseStep {
     private final NoteModel noteModel = new NoteModel();
+    private final Logger logger = new Logger(getClass());
 
     @Given("I am a user adding a note")
     public void IAmAUserAddingANote() {
         SystemVariable sys = new SystemVariable();
         driver.get(sys.baseUrl);
+        logger.info("getting web page " + sys.baseUrl);
     }
 
     @When("I enter a simple note")

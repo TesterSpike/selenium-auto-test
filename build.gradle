@@ -25,6 +25,8 @@ ext {
 }
 
 task cucumber() {
+    //cmd line 'gradlew cucumber' to run all tests. Cucumber default config included in case no runner class
+    //FIXME config doesn't find the steps for the feature files
     dependsOn assemble, compileTestJava, test
     doLast {
         javaexec {
@@ -44,14 +46,17 @@ configurations {
 dependencies {
     testImplementation("org.junit.jupiter:junit-jupiter-api:$junitVersion")
     testImplementation("org.junit.jupiter:junit-jupiter-engine:$junitVersion")
+    //Used for Cucumber Runner
     testImplementation("org.junit.vintage:junit-vintage-engine:$junitVersion")
 
-    // Downloads the correct webdriver binary for the browser and version
+    // Downloads the correct webdriver binary for the browser and version used in testing
     implementation("io.github.bonigarcia:webdrivermanager:$webdriverManagerVersion")
 
     //SLF4J
-    //Added to remove default error message from Selenium
-    testImplementation("org.slf4j:slf4j-nop:$slf4jVersion")
+    //Add to remove default error message from Selenium if no logging framework is used
+    //testImplementation("org.slf4j:slf4j-nop:$slf4jVersion")
+    implementation("org.slf4j:slf4j-api:$slf4jVersion")
+    implementation("org.slf4j:slf4j-simple:$slf4jVersion")
 
     //Selenium
     implementation("org.seleniumhq.selenium:selenium-java:$seleniumVersion")
