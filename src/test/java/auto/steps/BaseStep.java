@@ -1,4 +1,4 @@
-package steps;
+package auto.steps;
 
 
 import io.cucumber.java.After;
@@ -14,6 +14,8 @@ class BaseStep {
     final ChromeDriver driver;
 
     BaseStep() {
+        System.setProperty("webdriver.chrome.logfile", "./target/logs/chromedriver.log");
+        System.setProperty("webdriver.chrome.verboseLogging", "false");
         WebDriverManager.chromedriver().setup(); //gets matching version of the chrome driver for the test system
         driver = new ChromeDriver();
     }

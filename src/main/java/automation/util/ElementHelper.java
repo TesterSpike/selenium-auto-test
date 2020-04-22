@@ -47,7 +47,7 @@ public class ElementHelper {
             try {
                 Thread.sleep(seconds * 1000);
             } catch (InterruptedException e) {
-                logger.error("Element highlighting was interrupted: " + e.getLocalizedMessage());
+                logger.error("Element highlighting was interrupted", e);
             }
             js.executeScript(
                     "arguments[0].setAttribute(arguments[1], arguments[2])",

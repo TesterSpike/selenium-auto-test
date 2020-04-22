@@ -1,23 +1,23 @@
 package automation.util;
 
-import org.slf4j.LoggerFactory;
+import org.apache.logging.log4j.LogManager;
 
 public class Logger {
-    private final org.slf4j.Logger logger;
+    private final org.apache.logging.log4j.Logger logger;
 
     public Logger(Class<?> callingClass) {
-        logger = LoggerFactory.getLogger(callingClass);
+        logger = LogManager.getLogger(callingClass.getName());
     }
 
-    public void error(String message) {
-        logger.error(message);
+    public void error(String message, Exception exception) {
+        logger.atError().log("{}", message, exception);
     }
 
     public void info(String message) {
-        logger.info(message);
+        logger.atInfo().log(message);
     }
 
     public void debug(String message) {
-        logger.debug(message);
+        logger.atDebug().log(message);
     }
 }

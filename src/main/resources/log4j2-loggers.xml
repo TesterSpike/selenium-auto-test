@@ -1,0 +1,19 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<Loggers>
+    <!--  fatal < error < warn < info < debug < trace < all      -->
+    <!--   Default logging is errors and fatal only     -->
+    <Root level="error">
+        <AppenderRef ref="Console"/>
+        <AppenderRef ref="File"/>
+    </Root>
+    <!--   Set tests to display info and lower logging  -->
+    <Logger name="auto" level="info" additivity="false">
+        <AppenderRef ref="Console"/>
+        <AppenderRef ref="File"/>
+    </Logger>
+    <!--   Set code to display debug and lower logging     -->
+    <Logger name="automation" level="debug" additivity="false">
+        <AppenderRef ref="Console"/>
+        <AppenderRef ref="File"/>
+    </Logger>
+</Loggers>

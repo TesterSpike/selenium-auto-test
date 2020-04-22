@@ -1,5 +1,7 @@
 package automation;
 
+import automation.util.Logger;
+
 import java.io.FileInputStream;
 import java.io.IOException;
 import java.io.InputStream;
@@ -11,6 +13,7 @@ public class SystemVariable {
     public String baseUrl;
     public String defaultPriority;
     private Properties properties;
+    private final Logger logger = new Logger(getClass());
 
 
     public SystemVariable() {
@@ -36,7 +39,7 @@ public class SystemVariable {
         try (InputStream input = new FileInputStream("./src/test/resources/" + env + ".properties")) {
             props.load(input);
         } catch (IOException ex) {
-            ex.printStackTrace();
+            logger.error("Invalid system property key or value", ex);
         }
         return props;
     }

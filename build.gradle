@@ -21,12 +21,13 @@ ext {
     seleniumVersion = '3.141.59'
     webdriverManagerVersion = '3.8.1'
     slf4jVersion = '1.7.30'
+    log4jVersion = '2.13.1'
     cucumberVersion = '5.6.0'
 }
 
 task cucumber() {
     //cmd line 'gradlew cucumber' to run all tests. Cucumber default config included in case no runner class
-    //FIXME config doesn't find the steps for the feature files
+    //FIXME config doesn't find the automation.steps for the feature files
     dependsOn assemble, compileTestJava, test
     doLast {
         javaexec {
@@ -53,10 +54,12 @@ dependencies {
     implementation("io.github.bonigarcia:webdrivermanager:$webdriverManagerVersion")
 
     //SLF4J
-    //Add to remove default error message from Selenium if no logging framework is used
-    //testImplementation("org.slf4j:slf4j-nop:$slf4jVersion")
-    implementation("org.slf4j:slf4j-api:$slf4jVersion")
-    implementation("org.slf4j:slf4j-simple:$slf4jVersion")
+    //Add to remove default error message from Selenium if SLF4J logging is not used
+    testImplementation("org.slf4j:slf4j-nop:$slf4jVersion")
+
+    //LOG4J
+    implementation("org.apache.logging.log4j:log4j-api:$log4jVersion")
+    implementation("org.apache.logging.log4j:log4j-core:$log4jVersion")
 
     //Selenium
     implementation("org.seleniumhq.selenium:selenium-java:$seleniumVersion")

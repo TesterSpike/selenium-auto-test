@@ -1,4 +1,4 @@
-package steps;
+package auto.steps;
 
 import automation.SystemVariable;
 import automation.model.NoteModel;
